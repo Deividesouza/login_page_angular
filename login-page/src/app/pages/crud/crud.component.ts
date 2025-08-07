@@ -1,20 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DefaultCrudLayoutComponent } from '../../components/default-crud-layout/default-crud-layout.component';
-import { DefaultLoginLayoutComponent } from '../../components/default-login-layout/default-login-layout.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
-import { Router } from '@angular/router';
-import { LoginService } from '../../service/login.service';
-import { ToastrService } from 'ngx-toastr';
+import { CrudService } from '../../service/crud.service';
+import { Usuario } from './crud.model';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-crud',
   standalone: true,
   imports: [
     DefaultCrudLayoutComponent,
+    CommonModule
   ],
   templateUrl: './crud.component.html',
-  styleUrl: './crud.component.scss'
+  styleUrls: ['./crud.component.scss'] // corrigido
 })
-export class CrudComponent {
+export class CrudComponent implements OnInit {
+  usuarios: Usuario[] = [];
 
+  constructor(private readonly crudService: CrudService) { }
+
+  ngOnInit(): void {
+    this.crudService.listar().subscribe({
+      next: (data: Usuario[]) => {
+        console.log('Dados recebidos:', data);
+        this.usuarios = data;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar usuários:', err);
+      }
+    });
+  }
 }

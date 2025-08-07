@@ -1,4 +1,29 @@
-<app-default-crud-layout
+<app-default-crud-layout>
+  <p>Usuarios carregados: {{ usuarios.length }}</p>
+  <table border="2" style="width: 100%">
+    <thead>
+      <tr>
+        <th>IP</th>
+        <th>MAC</th>
+        <th>Hostname</th>
+        <th>Nome</th>
+        <th>Posto/Grad</th>
+        <th>CPF</th>
+        <th>LNA</th>
+      </tr>
+    </thead>
+    <tbody>
+  <tr *ngFor="let usuario of usuarios; let i = index">
+    <td>{{ usuario.ip }}</td>
+    <td>{{ usuario.macaddress }}</td>
+    <td>{{ usuario.hostname }}</td>
+    <td>{{ usuario.nomecompleto }}</td>
+    <td>{{ usuario.posto_grade }}</td>
+    <td>{{ usuario.cpf }}</td>
+    <td>{{ usuario.lna }}</td>
+  </tr>
+    </tbody>
+  </table>
+</app-default-crud-layout>
 
 
->

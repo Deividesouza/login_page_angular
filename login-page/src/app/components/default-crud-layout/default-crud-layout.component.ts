@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './default-crud-layout.component.html',
-  styleUrl: './default-crud-layout.component.scss'
+  styleUrls: ['./default-crud-layout.component.scss']
 })
-export class DefaultCrudLayoutComponent {
-
-}
+export class DefaultCrudLayoutComponent { }
