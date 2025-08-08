@@ -1,29 +1,79 @@
+<mat-toolbar color ="background-color" class="toolbar">
+  <span>Lista de Usuários</span>
+    <div class="search-box">
+      <div class="spacer"></div>
+<input
+  type="text"
+  class="search-field"
+  placeholder="Buscar usuário..."
+  (input)="aplicarFiltro($event)"
+/>
+  </div>
+  <div class="spacer"></div>
+  </mat-toolbar>
 <app-default-crud-layout>
-  <p>Usuarios carregados: {{ usuarios.length }}</p>
-  <table border="2" style="width: 100%">
-    <thead>
-      <tr>
-        <th>IP</th>
-        <th>MAC</th>
-        <th>Hostname</th>
-        <th>Nome</th>
-        <th>Posto/Grad</th>
-        <th>CPF</th>
-        <th>LNA</th>
-      </tr>
-    </thead>
-    <tbody>
-  <tr *ngFor="let usuario of usuarios; let i = index">
-    <td>{{ usuario.ip }}</td>
-    <td>{{ usuario.macaddress }}</td>
-    <td>{{ usuario.hostname }}</td>
-    <td>{{ usuario.nomecompleto }}</td>
-    <td>{{ usuario.posto_grade }}</td>
-    <td>{{ usuario.cpf }}</td>
-    <td>{{ usuario.lna }}</td>
-  </tr>
-    </tbody>
-  </table>
+      <button mat-flat-button color="primary" (click)="abrirCadastro()">
+      Novo Usuário
+    </button>
+
+  <div class="table-container">
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="ip">
+    <th mat-header-cell *matHeaderCellDef> IP </th>
+    <td mat-cell *matCellDef="let usuario"> {{ usuario.ip }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="macaddress">
+    <th mat-header-cell *matHeaderCellDef> MAC Address </th>
+    <td mat-cell *matCellDef="let usuario"> {{ usuario.macaddress }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="hostname">
+    <th mat-header-cell *matHeaderCellDef> Hostname </th>
+    <td mat-cell *matCellDef="let usuario"> {{ usuario.hostname }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nomecompleto">
+    <th mat-header-cell *matHeaderCellDef> Nome Completo </th>
+    <td mat-cell *matCellDef="let usuario"> {{ usuario.nomecompleto }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="posto_grade">
+    <th mat-header-cell *matHeaderCellDef> Posto/Grad </th>
+    <td mat-cell *matCellDef="let usuario"> {{ usuario.posto_grade }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cpf">
+    <th mat-header-cell *matHeaderCellDef> CPF </th>
+    <td mat-cell *matCellDef="let usuario"> {{ usuario.cpf }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lna">
+    <th mat-header-cell *matHeaderCellDef> LNA </th>
+    <td mat-cell *matCellDef="let usuario"> {{ usuario.lna }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="acoes">
+    <th mat-header-cell *matHeaderCellDef> Ações </th>
+    <td mat-cell *matCellDef="let usuario">
+      <button mat-icon-button color="warn" (click)="excluirUsuario(usuario.ip)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button color="danger" (click)="editarUsuario(usuario)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+</div>
+<mat-paginator [length]="10" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"aria-label="Select page"> </mat-paginator>
+
+
 </app-default-crud-layout>
-
-

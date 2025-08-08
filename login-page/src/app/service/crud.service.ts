@@ -21,7 +21,7 @@ export class CrudService {
   }
 
   criar(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.apiUrl, usuario);
+    return this.http.post<Usuario>(`${this.apiUrl}/cadastrar`, usuario);
   }
 
   atualizar(id: number, usuario: Usuario): Observable<Usuario> {

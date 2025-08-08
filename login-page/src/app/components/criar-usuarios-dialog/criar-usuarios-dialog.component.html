@@ -1,0 +1,42 @@
+<h2>Cadastrar Usuário</h2>
+    <form [formGroup]="form" (ngSubmit)="salvar()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>IP</mat-label>
+        <input matInput formControlName="ip" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>MAC Address</mat-label>
+        <input matInput formControlName="macaddress" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Hostname</mat-label>
+        <input matInput formControlName="hostname" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput formControlName="nomecompleto" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Posto/Grad</mat-label>
+        <input matInput formControlName="posto_grade" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>CPF</mat-label>
+        <input matInput formControlName="cpf" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>LNA</mat-label>
+        <input matInput formControlName="lna" />
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Salvar</button>
+      </div>
+    </form>

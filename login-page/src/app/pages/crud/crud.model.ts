@@ -1,5 +1,5 @@
 export interface Usuario {
-  ip: string;
+  ip: number;
   macaddress: string;
   hostname: string;
   nomecompleto: string;
